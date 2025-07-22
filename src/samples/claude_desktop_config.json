@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+      "mssql-onpremises": {
+        "command": "node",
+        "args": [ "C:/path/to/your/dist/index.js" ],
+        "env": {
+          "SERVER_NAME": "localhost",
+          "DATABASE_NAME": "your-database-name",
+          "DB_USER": "your-sql-username",
+          "DB_PASSWORD": "your-sql-password",
+          "READONLY": "false",
+          "TRUST_SERVER_CERTIFICATE": "true"
+        }
+      }
+    }
+  }
