@@ -39,10 +39,10 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/mssql-mcp-onpremises.git"
+    "url": "https://github.com/dnldelarosa/mssql-mcp-onpremises.git"
   },
-  "homepage": "https://github.com/your-username/mssql-mcp-onpremises#readme",
+  "homepage": "https://github.com/dnldelarosa/mssql-mcp-onpremises#readme",
   "bugs": {
-    "url": "https://github.com/your-username/mssql-mcp-onpremises/issues"
+    "url": "https://github.com/dnldelarosa/mssql-mcp-onpremises/issues"
   }
 }
