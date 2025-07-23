@@ -55,19 +55,6 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
    npm run build
    ```
 
-4. **Configure Environment**
-   Create a `.env` file in the root of the project and add the following variables:
-   ```env
-    SERVER_NAME="localhost"
-    DATABASE_NAME="your-database-name"
-    DB_USER="your-sql-username"
-    DB_PASSWORD="your-sql-password"
-    READONLY="false"
-    TRUST_SERVER_CERTIFICATE="true"
-   ```
-   *Alternatively, you can rename the `.env.example` file to `.env` and edit the values.*
-
-
 ## Configuration Setup
 
 ### Option 1: GitHub Copilot Setup
@@ -88,17 +75,25 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
           "type": "stdio",
           "command": "node",
           "args": ["C:/path/to/your/project/dist/index.js"],
+          "env": {
+            "SERVER_NAME": "localhost",
+            "DATABASE_NAME": "your-database-name",
+            "DB_USER": "your-sql-username",
+            "DB_PASSWORD": "your-sql-password",
+            "READONLY": "false",
+            "TRUST_SERVER_CERTIFICATE": "true"
+          }
         }
       }
    }
    ```
    ***Note**: Ensure the path to `dist/index.js` is correct.*
 
-3. **Alternative: User Settings Configuration**
-   - Open VS Code Settings (Ctrl+,)
-   - Search for "mcp"
-   - Click "Edit in settings.json"
-   - Add the following configuration:
+3. **Alternative: User Level MCP Configuration**
+    - Open the Command Palette (Ctrl+Shift+P)
+    - Type `Preferences: Open User Settings (JSON)` and press Enter.
+    - If you don't have a `mcp.json` file in your user settings, create one.
+    - Add the following configuration to your user's `mcp.json` file:
 
   ```json
    {
@@ -107,12 +102,19 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
             "mssql-onpremises": {
                 "command": "node",
                 "args": ["C:/path/to/your/project/dist/index.js"],
+                "env": {
+                  "SERVER_NAME": "localhost",
+                  "DATABASE_NAME": "your-database-name",
+                  "DB_USER": "your-sql-username",
+                  "DB_PASSWORD": "your-sql-password",
+                  "READONLY": "false",
+                  "TRUST_SERVER_CERTIFICATE": "true"
+                }
             }
         }
     }
   }
   ```
-   ***Note**: For the latest information on how to configure the MCP server with GitHub Copilot, please refer to the official documentation.*
 
 4. **Restart VS Code**
    - Close and reopen VS Code for the changes to take effect
@@ -129,7 +131,7 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
    - Open the `claude_desktop_config` file
 
 2. **Add MCP Server Configuration**
-   Replace the content with the configuration below, updating the path to the project's `dist/index.js` file:
+   Replace the content with the configuration below, updating the path and credentials:
 
    ```json
    {
@@ -137,6 +139,14 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
        "mssql-onpremises": {
          "command": "node",
          "args": ["C:/path/to/your/project/dist/index.js"],
+         "env": {
+           "SERVER_NAME": "localhost",
+           "DATABASE_NAME": "your-database-name",
+           "DB_USER": "your-sql-username",
+           "DB_PASSWORD": "your-sql-password",
+           "READONLY": "false",
+           "TRUST_SERVER_CERTIFICATE": "true"
+         }
        }
      }
    }
