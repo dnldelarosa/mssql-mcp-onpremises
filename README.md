@@ -6,19 +6,19 @@
 
 ## What is this? 🤔
 
-This is a **Model Context Protocol (MCP) server** specifically designed for **on-premises SQL Server databases**. It enables AI assistants like Claude and VS Code Agent to interact directly with your local SQL Server instances using traditional SQL Server authentication.
+This is a **Model Context Protocol (MCP) server** specifically designed for **on-premises SQL Server databases**. It enables AI assistants like GitHub Copilot and Claude to interact directly with your local SQL Server instances using traditional SQL Server authentication.
 
 **Key Difference**: This version has been adapted from the original Azure SQL samples to work with on-premises SQL Server installations, removing Azure Active Directory dependencies and cloud-specific authentication requirements.
 
 ### Quick Example
 ```text
 You: "Show me all customers from New York"
-Claude: *connects to your local SQL Server and returns the results*
+GitHub Copilot: *connects to your local SQL Server and returns the results*
 ```
 
 ## How Does It Work? 🛠️
 
-This server leverages the Model Context Protocol (MCP), a versatile framework that acts as a universal translator between AI models and databases. It supports multiple AI assistants including Claude Desktop and VS Code Agent.
+This server leverages the Model Context Protocol (MCP), a versatile framework that acts as a universal translator between AI models and databases. It supports multiple AI assistants including GitHub Copilot and Claude Desktop.
 
 ### What Can It Do? 📊
 
@@ -35,7 +35,7 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
 - **Node.js 16+** installed on your system
 - **SQL Server instance** (local, on-premises, or Docker)
 - **SQL Server Authentication enabled** on your SQL Server instance
-- **Claude Desktop** or **VS Code with Agent extension**
+- **Claude Desktop** or **GitHub Copilot**
 
 ### Installation
 
@@ -55,20 +55,27 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
    npm run build
    ```
 
-4. **Configure Environment** (Optional)
-   ```bash
-   cp .env.example .env
-   # Edit .env with your SQL Server connection details
+4. **Configure Environment**
+   Create a `.env` file in the root of the project and add the following variables:
+   ```env
+    SERVER_NAME="localhost"
+    DATABASE_NAME="your-database-name"
+    DB_USER="your-sql-username"
+    DB_PASSWORD="your-sql-password"
+    READONLY="false"
+    TRUST_SERVER_CERTIFICATE="true"
    ```
+   *Alternatively, you can rename the `.env.example` file to `.env` and edit the values.*
+
 
 ## Configuration Setup
 
-### Option 1: VS Code Agent Setup
+### Option 1: GitHub Copilot Setup
 
-1. **Install VS Code Agent Extension**
+1. **Install GitHub Copilot Extension**
    - Open VS Code
    - Go to Extensions (Ctrl+Shift+X)
-   - Search for "Agent" and install the official Agent extension
+   - Search for "GitHub Copilot" and install the official extension.
 
 2. **Create MCP Configuration File**
    - Create a `.vscode/mcp.json` file in your workspace
@@ -81,18 +88,11 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
           "type": "stdio",
           "command": "node",
           "args": ["C:/path/to/your/project/dist/index.js"],
-          "env": {
-            "SERVER_NAME": "localhost",
-            "DATABASE_NAME": "your-database-name",
-            "DB_USER": "your-sql-username",
-            "DB_PASSWORD": "your-sql-password",
-            "READONLY": "false",
-            "TRUST_SERVER_CERTIFICATE": "true"
-          }
         }
       }
    }
    ```
+   ***Note**: Ensure the path to `dist/index.js` is correct.*
 
 3. **Alternative: User Settings Configuration**
    - Open VS Code Settings (Ctrl+,)
@@ -107,19 +107,12 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
             "mssql-onpremises": {
                 "command": "node",
                 "args": ["C:/path/to/your/project/dist/index.js"],
-                "env": {
-                  "SERVER_NAME": "localhost",
-                  "DATABASE_NAME": "your-database-name",
-                  "DB_USER": "your-sql-username",
-                  "DB_PASSWORD": "your-sql-password",
-                  "READONLY": "false",
-                  "TRUST_SERVER_CERTIFICATE": "true"
-                }
             }
         }
     }
   }
   ```
+   ***Note**: For the latest information on how to configure the MCP server with GitHub Copilot, please refer to the official documentation.*
 
 4. **Restart VS Code**
    - Close and reopen VS Code for the changes to take effect
@@ -136,7 +129,7 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
    - Open the `claude_desktop_config` file
 
 2. **Add MCP Server Configuration**
-   Replace the content with the configuration below, updating the path and credentials:
+   Replace the content with the configuration below, updating the path to the project's `dist/index.js` file:
 
    ```json
    {
@@ -144,14 +137,6 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
        "mssql-onpremises": {
          "command": "node",
          "args": ["C:/path/to/your/project/dist/index.js"],
-         "env": {
-           "SERVER_NAME": "localhost",
-           "DATABASE_NAME": "your-database-name",
-           "DB_USER": "your-sql-username",
-           "DB_PASSWORD": "your-sql-password",
-           "READONLY": "false",
-           "TRUST_SERVER_CERTIFICATE": "true"
-         }
        }
      }
    }
@@ -175,7 +160,7 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
 
 You can find sample configuration files in the `src/samples/` folder:
 - `claude_desktop_config.json` - For Claude Desktop
-- `vscode_agent_config.json` - For VS Code Agent
+- `vscode_agent_config.json` - For GitHub Copilot
 
 ## Usage Examples
 
@@ -207,7 +192,7 @@ Once configured, you can interact with your database using natural language:
 - Check if the user account is not locked or disabled
 
 **MCP Server Not Listed**
-- Restart your AI assistant (Claude Desktop / VS Code)
+- Restart your AI assistant (Claude Desktop / GitHub Copilot)
 - Verify the path to `dist/index.js` is correct
 - Check the MCP configuration syntax for any JSON errors
 
