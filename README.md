@@ -91,8 +91,7 @@ This server leverages the Model Context Protocol (MCP), a versatile framework th
 
 3. **Alternative: User Level MCP Configuration**
     - Open the Command Palette (Ctrl+Shift+P)
-    - Type `Preferences: Open User Settings (JSON)` and press Enter.
-    - If you don't have a `mcp.json` file in your user settings, create one.
+    - Type `MCP:... (JSON)` and press Enter.
     - Add the following configuration to your user's `mcp.json` file:
 
   ```json
